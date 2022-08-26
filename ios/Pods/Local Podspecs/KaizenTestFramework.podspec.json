@@ -1,0 +1,25 @@
+{
+  "name": "KaizenTestFramework",
+  "version": "1.0.0",
+  "summary": "This is a framework",
+  "description": "hello",
+  "homepage": "https://github.com/github_account/react-native-instascan",
+  "license": "MIT",
+  "authors": {
+    "Kaizen": "info@kaizentech.net"
+  },
+  "source": {
+    "git": "https://github.com/github_account/react-native-instascan.git",
+    "tag": "1.0.0"
+  },
+  "source_files": [
+    "KaizenTestFramework",
+    "KaizenTestFramework/**/*.{h,m}"
+  ],
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}

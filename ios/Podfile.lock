@@ -1,0 +1,16 @@
+PODS:
+  - KaizenTestFramework (1.0.0)
+
+DEPENDENCIES:
+  - KaizenTestFramework (from `KaizenTestFramework`)
+
+EXTERNAL SOURCES:
+  KaizenTestFramework:
+    :path: KaizenTestFramework
+
+SPEC CHECKSUMS:
+  KaizenTestFramework: b8dd5574f6e1d274824712afab6ccbafc2f81427
+
+PODFILE CHECKSUM: 85e98ecd67bca7a3dc40cd23fa25a0c9a0fed654
+
+COCOAPODS: 1.11.2
