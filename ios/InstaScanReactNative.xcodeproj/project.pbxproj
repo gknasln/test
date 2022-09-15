@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9D53EAD728BF9EFE00E80054 /* KZNTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D53EAD628BF9EFE00E80054 /* KZNTestView.swift */; };
-		9DED2D4128B8EF210071D87D /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DED2D3F28B8EF210071D87D /* Test.m */; };
-		9DED2D5B28B90ABA0071D87D /* TestViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DED2D5A28B90ABA0071D87D /* TestViewManager.m */; };
-		9DED2D5D28B911C00071D87D /* TestViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DED2D5C28B911C00071D87D /* TestViewManager.swift */; };
 		E02B5E99B7706EF39FD3F0B8 /* Pods_InstaScanReactNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F23AB1CFA66835C0489A4155 /* Pods_InstaScanReactNative.framework */; };
+		EC69183628D32C6C00C26030 /* KZNInstaScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC69183328D32C6C00C26030 /* KZNInstaScanView.swift */; };
+		EC69183728D32C6C00C26030 /* InstaScanViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EC69183428D32C6C00C26030 /* InstaScanViewManager.m */; };
+		EC69183828D32C6C00C26030 /* InstaScanViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC69183528D32C6C00C26030 /* InstaScanViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,11 +28,10 @@
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libInstaScanReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInstaScanReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D6A4CA8D20112D53215787 /* Pods-InstaScanReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaScanReactNative.debug.xcconfig"; path = "Target Support Files/Pods-InstaScanReactNative/Pods-InstaScanReactNative.debug.xcconfig"; sourceTree = "<group>"; };
-		9D53EAD628BF9EFE00E80054 /* KZNTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KZNTestView.swift; sourceTree = "<group>"; };
-		9DED2D3F28B8EF210071D87D /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		9DED2D4228B8EF310071D87D /* InstaScanReactNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InstaScanReactNative-Bridging-Header.h"; sourceTree = "<group>"; };
-		9DED2D5A28B90ABA0071D87D /* TestViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewManager.m; sourceTree = "<group>"; };
-		9DED2D5C28B911C00071D87D /* TestViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewManager.swift; sourceTree = "<group>"; };
+		EC69183328D32C6C00C26030 /* KZNInstaScanView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KZNInstaScanView.swift; sourceTree = "<group>"; };
+		EC69183428D32C6C00C26030 /* InstaScanViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaScanViewManager.m; sourceTree = "<group>"; };
+		EC69183528D32C6C00C26030 /* InstaScanViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaScanViewManager.swift; sourceTree = "<group>"; };
 		F23AB1CFA66835C0489A4155 /* Pods_InstaScanReactNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaScanReactNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9B1347D76DF974148FA13EE /* Pods-InstaScanReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaScanReactNative.release.xcconfig"; path = "Target Support Files/Pods-InstaScanReactNative/Pods-InstaScanReactNative.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,10 +68,9 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				9D53EAD628BF9EFE00E80054 /* KZNTestView.swift */,
-				9DED2D3F28B8EF210071D87D /* Test.m */,
-				9DED2D5A28B90ABA0071D87D /* TestViewManager.m */,
-				9DED2D5C28B911C00071D87D /* TestViewManager.swift */,
+				EC69183428D32C6C00C26030 /* InstaScanViewManager.m */,
+				EC69183528D32C6C00C26030 /* InstaScanViewManager.swift */,
+				EC69183328D32C6C00C26030 /* KZNInstaScanView.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				9DED2D4228B8EF310071D87D /* InstaScanReactNative-Bridging-Header.h */,
 				9DED2D5128B8F7190071D87D /* Frameworks */,
@@ -173,10 +170,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9DED2D5B28B90ABA0071D87D /* TestViewManager.m in Sources */,
-				9D53EAD728BF9EFE00E80054 /* KZNTestView.swift in Sources */,
-				9DED2D4128B8EF210071D87D /* Test.m in Sources */,
-				9DED2D5D28B911C00071D87D /* TestViewManager.swift in Sources */,
+				EC69183628D32C6C00C26030 /* KZNInstaScanView.swift in Sources */,
+				EC69183828D32C6C00C26030 /* InstaScanViewManager.swift in Sources */,
+				EC69183728D32C6C00C26030 /* InstaScanViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

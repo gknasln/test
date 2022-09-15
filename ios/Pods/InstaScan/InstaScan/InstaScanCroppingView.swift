@@ -9,11 +9,11 @@ import UIKit
 
 final class InstaScanCroppingView: UIView {
     
-    @IBOutlet weak var lblGuide: UILabel!
+    weak var lblGuide: UILabel!
 
     
-    @IBOutlet private var overlayView: UIView!
-    @IBOutlet private var cropReferenceView: UIView!
+    private weak var overlayView: UIView!
+    private weak var cropReferenceView: UIView!
     
     private let shapeLayer = CAShapeLayer()
     
@@ -21,6 +21,42 @@ final class InstaScanCroppingView: UIView {
     var referenceFrame:CGRect?
     
  
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    func commonInit(){
+        let oView = UIView(frame: self.bounds)
+        oView.backgroundColor = .black.withAlphaComponent(0.6)
+        oView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        addSubview(oView)
+        overlayView = oView
+        
+        let cView = UILabel(frame: CGRect(x: 40, y: 288 , width: 334, height: 120))
+        cView.backgroundColor = .clear
+        addSubview(cView)
+        
+        cropReferenceView = cView
+        
+        let lbl = UILabel(frame: CGRect(x: 40, y: 86, width: 334, height: 74))
+        lbl.backgroundColor = .clear
+        lbl.textColor = .white
+        lbl.textAlignment = .center
+        lbl.numberOfLines = 0
+        lbl.font = UIFont.systemFont(ofSize: 15.0, weight: .semibold)
+        addSubview(lbl)
+        lblGuide = lbl
+        
+       
+        
+        setup()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,14 +104,13 @@ final class InstaScanCroppingView: UIView {
         layoutIfNeeded()
     }
     
-    override func layoutSubviews() {
+   override func layoutSubviews() {
         super.layoutSubviews()
 
         overlayView.frame = self.bounds
 
         if let refFrame = referenceFrame {
-            var frame = refFrame
-            cropReferenceView.frame  = frame
+            cropReferenceView.frame  = refFrame
          
         } else {
             var frame = cropReferenceView.frame

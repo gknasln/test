@@ -72,7 +72,9 @@ public class InstaScanViewManager : RCTViewManager {
       }
     
     
-    
+    public override class func requiresMainQueueSetup() -> Bool {
+        return true
+    }
 
 
 

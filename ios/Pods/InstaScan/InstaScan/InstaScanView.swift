@@ -8,15 +8,17 @@
 import UIKit
 import AVFoundation
 import Vision
+
+
 open class InstaScanView: UIView {
 
     public var delegate:InstaScanDelegate?
 
     var currentImage:UIImage!
     
-    @IBOutlet weak var overlayView: InstaScanCroppingView!
-    @IBOutlet weak var previewView:InstaScanPreviewView!
-    @IBOutlet var contentView:UIView!
+    weak var overlayView: InstaScanCroppingView!
+    weak var previewView:InstaScanPreviewView!
+    var contentView:UIView!
 
     var configuration = InstaScanConfiguration()
     
@@ -74,11 +76,18 @@ open class InstaScanView: UIView {
     }
     
     func commonInit(){
-        let bundle = Bundle(identifier: "com.kaizen.InstaScan")!
-        bundle.loadNibNamed("InstaScanView", owner: self, options: nil)
-        addSubview(self.contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        let pView = InstaScanPreviewView(frame: self.bounds)
+        pView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        pView.backgroundColor = .black
+        addSubview(pView)
+        self.previewView = pView
+        
+        let cView = InstaScanCroppingView(frame: self.bounds)
+        cView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        cView.backgroundColor = .clear
+        addSubview(cView)
+        self.overlayView = cView
+  
     }
     
     func checkResults(){
@@ -393,6 +402,7 @@ open class InstaScanView: UIView {
     
     func setupUiConstraints() {
         previewView.frame = self.bounds
+        overlayView.frame = self.bounds
     }
     
     public func setTorch(_ on:Bool){
@@ -516,5 +526,6 @@ extension InstaScanView: AVCaptureVideoDataOutputSampleBufferDelegate {
     open override func layoutSubviews() {
         super.layoutSubviews()
         previewView.frame = self.bounds
+        overlayView.frame = self.bounds
     }
 }

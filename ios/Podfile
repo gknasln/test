@@ -5,7 +5,7 @@ target 'InstaScanReactNative' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   
-  pod 'InstaScan', :git => 'https://gknasln@bitbucket.org/kaizentelekom/instascanios.git'
+  pod 'InstaScan', :git => 'https://bitbucket.org/kaizentelekom/instascanios.git'
 
   # Pods for InstaScanReactNative
 

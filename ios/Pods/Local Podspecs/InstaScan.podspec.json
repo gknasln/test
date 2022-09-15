@@ -1,7 +1,7 @@
 {
   "name": "InstaScan",
   "version": "1.0.0",
-  "summary": "This is a framework",
+  "summary": "InstaScan is a framework used for recognizing pincodes.",
   "description": "InstaScan",
   "homepage": "https://bitbucket.org/kaizentelekom/instascanios.git",
   "license": "MIT",

@@ -22,7 +22,7 @@ class InstaScanPreviewView: UIView {
 	}
 	
 	
-	override class var layerClass: AnyClass {
+    override class var layerClass: AnyClass {
 		return AVCaptureVideoPreviewLayer.self
 	}
 }
