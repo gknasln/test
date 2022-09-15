@@ -6,8 +6,8 @@ export default function Camera() {
   
   return (
     <View style={styles.container}>
-      <InstaScan
-        
+      <InstaScan apiKey="abcdefgh"
+        onPincodeRead = {data => alert("pincode read: " + JSON.stringify(data))}
       /> 
     </View>
   )

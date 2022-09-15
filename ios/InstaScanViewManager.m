@@ -20,6 +20,6 @@
     //RCT_EXPORT_VIEW_PROPERTY(testNumber, NSInteger)
     //RCT_EXPORT_VIEW_PROPERTY(testFloat, float)
     //RCT_EXPORT_VIEW_PROPERTY(algorithm, NSInteger)
-    //RCT_EXPORT_VIEW_PROPERTY(onPincodeRead, RCTBubblingEventBlock)
+    RCT_EXPORT_VIEW_PROPERTY(onPincodeRead, RCTBubblingEventBlock)
     //RCT_EXPORT_VIEW_PROPERTY(testObject, NSDictionary)
 @end

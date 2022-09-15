@@ -13,12 +13,15 @@ public class KZNInstaScanView:InstaScanView{
     @objc public var onPincodeRead:RCTBubblingEventBlock?
     
     @objc public func startScan(){
+        print("startScan!")
         super.startScan(configuration: self.configuration)
     
     }
     
     @objc public var apiKey:String = ""{
         didSet{
+             print("api key: " + apiKey)
+
             configuration.apiKey = apiKey
         }
     }

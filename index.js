@@ -43,13 +43,18 @@ export default class InstaScan extends Component {
   }
   
 
-  defaultProps =  {
+  /*defaultProps =  {
     
-  }
+  }*/
 
   
   componentDidMount(){
-    this.startScan();
+    console.log(this.instaScanRef)
+    setTimeout(() => {
+      this.startScan();
+
+    }, 0);
+
   }
 
   componentWillUnmount(){
@@ -58,10 +63,13 @@ export default class InstaScan extends Component {
 
 
   render() {
+    console.log(this.props)
     return (
       <RNInstaScan
         ref={ref => this.instaScanRef = ref}
-        {...this.props}
+        style = {{flex:1}}
+        apiKey = "abcdefgh"
+        //{...this.props}
         onPincodeRead={event => {
           if(this.props.onPincodeRead)
             this.props.onPincodeRead(event.nativeEvent);
