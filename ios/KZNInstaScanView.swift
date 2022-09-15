@@ -8,19 +8,38 @@
 
 import Foundation
 
-@objc(KZNTestView)
-public class KZNTestView:TestView{
-    @objc public var testColor:UIColor = .red{
+@objc(KZNInstaScanView)
+public class KZNInstaScanView:InstaScanView{
+    @objc public var onPincodeRead:RCTBubblingEventBlock?
+    
+    @objc public func startScan(){
+        super.startScan(configuration: self.configuration)
+    
+    }
+    
+    @objc public var apiKey:String = ""{
         didSet{
-            self.backgroundColor = testColor
+            configuration.apiKey = apiKey
         }
     }
     
+    override func onPincodeReaded(_ result: InstaScanResult) {
+        super.onPincodeReaded(result)
+        var event:[String:Any] = [:]
+        event["pincode"] = result.pincode
+        event["image"] = result.image
+        event["configuration"] = result.configuration
+        
+        onPincodeRead?(event)
+    }
     
-    @objc public var onPincodeRead:RCTBubblingEventBlock?
     
-    
-    
+    /*
+     @objc public var testColor:UIColor = .red{
+         didSet{
+             self.backgroundColor = testColor
+         }
+     }
     @objc public var testBoolean:Bool = true{
         didSet{
             print("Test Booean: \(testBoolean)")
@@ -65,5 +84,6 @@ public class KZNTestView:TestView{
             self.onPincodeRead?(event)
         }
     }
+ */
     
 }

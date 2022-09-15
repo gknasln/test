@@ -1,0 +1,6 @@
+framework module InstaScan {
+  umbrella header "InstaScan-umbrella.h"
+
+  export *
+  module * { export * }
+}

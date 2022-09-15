@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   # optional - use expanded license entry instead:
   # s.license    = { :type => "MIT", :file => "LICENSE" }
   s.authors      = { "kaizen" => "info@kaizentech.net" }
-  s.platforms    = { :ios => "9.0" }
+  s.platforms    = { :ios => "13.0" }
   s.source       = { :git => "https://github.com/github_account/react-native-instascan.git", :tag => "#{s.version}" }
 
   # s.vendored_frameworks = "ios/KaizenTestFramework.framework"

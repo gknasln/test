@@ -1,16 +1,21 @@
 PODS:
-  - KaizenTestFramework (1.0.0)
+  - InstaScan (1.0.0)
 
 DEPENDENCIES:
-  - KaizenTestFramework (from `KaizenTestFramework`)
+  - "InstaScan (from `https://gknasln@bitbucket.org/kaizentelekom/instascanios.git`)"
 
 EXTERNAL SOURCES:
-  KaizenTestFramework:
-    :path: KaizenTestFramework
+  InstaScan:
+    :git: "https://gknasln@bitbucket.org/kaizentelekom/instascanios.git"
+
+CHECKOUT OPTIONS:
+  InstaScan:
+    :commit: 7c2048dc03f3f87d6b23b39e4244747ab6b14968
+    :git: "https://gknasln@bitbucket.org/kaizentelekom/instascanios.git"
 
 SPEC CHECKSUMS:
-  KaizenTestFramework: b8dd5574f6e1d274824712afab6ccbafc2f81427
+  InstaScan: e860c101c127f75c08c73589c46930c61b74beb4
 
-PODFILE CHECKSUM: 85e98ecd67bca7a3dc40cd23fa25a0c9a0fed654
+PODFILE CHECKSUM: a7ea87aaa54e936ee3f98c677acb0e09a2b7d5d0
 
 COCOAPODS: 1.11.2

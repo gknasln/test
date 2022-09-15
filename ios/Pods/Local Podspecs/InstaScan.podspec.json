@@ -1,0 +1,22 @@
+{
+  "name": "InstaScan",
+  "version": "1.0.0",
+  "summary": "This is a framework",
+  "description": "InstaScan",
+  "homepage": "https://bitbucket.org/kaizentelekom/instascanios.git",
+  "license": "MIT",
+  "authors": {
+    "Kaizen": "info@kaizentech.net"
+  },
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source": {
+    "git": "https://bitbucket.org/kaizentelekom/instascanios.git",
+    "tag": "1.0.0"
+  },
+  "source_files": [
+    "InstaScan",
+    "InstaScan/**/*.{h,m}"
+  ]
+}

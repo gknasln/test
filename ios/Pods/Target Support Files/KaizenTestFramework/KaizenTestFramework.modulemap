@@ -1,6 +1,0 @@
-framework module KaizenTestFramework {
-  umbrella header "KaizenTestFramework-umbrella.h"
-
-  export *
-  module * { export * }
-}

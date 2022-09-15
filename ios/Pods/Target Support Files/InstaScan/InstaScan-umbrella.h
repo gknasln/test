@@ -10,8 +10,8 @@
 #endif
 #endif
 
-#import "KaizenTestFramework.h"
+#import "InstaScan.h"
 
-FOUNDATION_EXPORT double KaizenTestFrameworkVersionNumber;
-FOUNDATION_EXPORT const unsigned char KaizenTestFrameworkVersionString[];
+FOUNDATION_EXPORT double InstaScanVersionNumber;
+FOUNDATION_EXPORT const unsigned char InstaScanVersionString[];
 

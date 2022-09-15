@@ -31,25 +31,45 @@ extension UIColor {
 }
 
 
-@objc(TestViewManager)
-public class TestViewManager : RCTViewManager {
+@objc(InstaScanViewManager)
+public class InstaScanViewManager : RCTViewManager {
 
-    @objc func changeColor(_ node: NSNumber, colorHex: NSString) {
-    DispatchQueue.main.async {
-        //let uiManager = self.bridge.module(forName: RCTUIManager.moduleName()) as! RCTUIManager
-        let component =  self.bridge.uiManager.view(
-        forReactTag: node
-      ) as! KZNTestView
-        
-        component.changeColor(color: UIColor(hexString: colorHex as String))
-    }
-  }
+    @objc func startScan(_ node: NSNumber) {
+        DispatchQueue.main.async {
+            let component =  self.bridge.uiManager.view(
+            forReactTag: node
+          ) as! KZNInstaScanView
+            
+            component.startScan()
+        }
+      }
+      
     
+    @objc func stopScan(_ node: NSNumber) {
+        DispatchQueue.main.async {
+            let component =  self.bridge.uiManager.view(
+            forReactTag: node
+          ) as! KZNInstaScanView
+            
+            component.stopScan()
+        }
+      }
+      
+    @objc func restartScan(_ node: NSNumber) {
+        DispatchQueue.main.async {
+            let component =  self.bridge.uiManager.view(
+            forReactTag: node
+          ) as! KZNInstaScanView
+            
+            component.restartScan()
+        }
+      }
+      
   
     
     public override func view() -> UIView! {
-    return KZNTestView()
-  }
+        return KZNInstaScanView()
+      }
     
     
     

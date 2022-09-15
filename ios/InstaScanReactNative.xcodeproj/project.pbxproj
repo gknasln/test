@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D53EAD728BF9EFE00E80054 /* KZNTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D53EAD628BF9EFE00E80054 /* KZNTestView.swift */; };
 		9DED2D4128B8EF210071D87D /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DED2D3F28B8EF210071D87D /* Test.m */; };
 		9DED2D5B28B90ABA0071D87D /* TestViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DED2D5A28B90ABA0071D87D /* TestViewManager.m */; };
 		9DED2D5D28B911C00071D87D /* TestViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DED2D5C28B911C00071D87D /* TestViewManager.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libInstaScanReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInstaScanReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D6A4CA8D20112D53215787 /* Pods-InstaScanReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaScanReactNative.debug.xcconfig"; path = "Target Support Files/Pods-InstaScanReactNative/Pods-InstaScanReactNative.debug.xcconfig"; sourceTree = "<group>"; };
+		9D53EAD628BF9EFE00E80054 /* KZNTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KZNTestView.swift; sourceTree = "<group>"; };
 		9DED2D3F28B8EF210071D87D /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		9DED2D4228B8EF310071D87D /* InstaScanReactNative-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InstaScanReactNative-Bridging-Header.h"; sourceTree = "<group>"; };
 		9DED2D5A28B90ABA0071D87D /* TestViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewManager.m; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				9D53EAD628BF9EFE00E80054 /* KZNTestView.swift */,
 				9DED2D3F28B8EF210071D87D /* Test.m */,
 				9DED2D5A28B90ABA0071D87D /* TestViewManager.m */,
 				9DED2D5C28B911C00071D87D /* TestViewManager.swift */,
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DED2D5B28B90ABA0071D87D /* TestViewManager.m in Sources */,
+				9D53EAD728BF9EFE00E80054 /* KZNTestView.swift in Sources */,
 				9DED2D4128B8EF210071D87D /* Test.m in Sources */,
 				9DED2D5D28B911C00071D87D /* TestViewManager.swift in Sources */,
 			);
@@ -225,7 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
@@ -277,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
