@@ -6,7 +6,7 @@
 //
 
 import Foundation
-public enum InstaScanAlgorithm{
+@objc public enum InstaScanAlgorithm : Int{
     case accurate
     case fast
 }

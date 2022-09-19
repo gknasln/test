@@ -243,7 +243,6 @@ open class InstaScanView: UIView {
         delegate?.pincodeReaded(result: result)
     }
     
-    
     open func restartScan(){
         removeHighligts()
         recognizedPincodes = [:]

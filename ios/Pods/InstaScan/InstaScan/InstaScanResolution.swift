@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum InstaScanResolution{
+@objc public enum InstaScanResolution : Int{
     case hd4Kw3840h2160
     case hdw1920h1080
     case hdw1280h720

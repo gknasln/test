@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   InstaScan:
-    :commit: 83807eeb79668c1a8434a085192599de287a2a88
+    :commit: 20c33823f09d50baeccb1062d20f59473c2e9c53
     :git: https://bitbucket.org/kaizentelekom/instascanios.git
 
 SPEC CHECKSUMS:

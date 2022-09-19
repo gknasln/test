@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum InstaScanFocusRestriction{
+@objc public enum InstaScanFocusRestriction : Int{
     case none
     case near
     case far

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class InstaScanConfiguration {
+public class InstaScanConfiguration: Encodable, CustomStringConvertible {
     var apiKey:String!
     public var settings:InstaScanSettings = InstaScanSettings()
     public var style:InstaScanStyle = InstaScanStyle()
@@ -18,6 +18,14 @@ public class InstaScanConfiguration {
         self.init()
         self.apiKey = apiKey
     }
-   
+    public var description: String{
+        let encoder = JSONEncoder()
+        
+        if let data = try? encoder.encode(self), let string = String(data: data, encoding: .utf8) {
+            return string
+        }
+        
+        return ""
+    }
     
 }

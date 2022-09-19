@@ -55,6 +55,29 @@ export default class InstaScan extends Component {
 
     }, 0);
 
+    setTimeout(() => {
+      this.updateGuideText("Lütfen okutmak istediğiniz kodu çerçeveye hizalayıp aktif oluncuya kadar bekleyiniz.");
+
+    }, 0);
+
+    setTimeout(() => {
+      this.setTorch(true)
+
+    }, 1000);
+
+    /*setTimeout(() => {
+
+      this.getTorchStatus(torchStatus => {
+        alert(`torchStatus: ${torchStatus}`);
+      })
+
+    }, 2000);*/
+
+    setTimeout(() => {
+      this.toggleTorch()
+
+    }, 5000);
+
   }
 
   componentWillUnmount(){
@@ -72,6 +95,7 @@ export default class InstaScan extends Component {
         //{...this.props}
         onPincodeRead={event => {
           if(this.props.onPincodeRead)
+            this.updateGuideText(event.nativeEvent.pincode)
             this.props.onPincodeRead(event.nativeEvent);
         }}
       />
@@ -93,4 +117,45 @@ export default class InstaScan extends Component {
       [...args]
     );
   };
+
+  restartScan = (...args) => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.instaScanRef),
+      UIManager[COMPONENT_NAME].Commands.restartScan,
+      [...args]
+    );
+  };
+
+  updateGuideText = (...args) => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.instaScanRef),
+      UIManager[COMPONENT_NAME].Commands.updateGuideText,
+      [...args]
+    );
+  };
+
+  toggleTorch = (...args) => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.instaScanRef),
+      UIManager[COMPONENT_NAME].Commands.toggleTorch,
+      [...args]
+    );
+  };
+
+  setTorch = (...args) => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.instaScanRef),
+      UIManager[COMPONENT_NAME].Commands.setTorch,
+      [...args]
+    );
+  };
+
+  getTorchStatus = (...args) => {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(this.instaScanRef),
+      UIManager[COMPONENT_NAME].Commands.getTorchStatus,
+      [...args]
+    );
+  };
+
 }

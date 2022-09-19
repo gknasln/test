@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class InstaScanRules{
+public class InstaScanRules : Encodable{
     public var allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
     public var minDigits = 6
     public var maxDigits = 12
