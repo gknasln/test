@@ -52,6 +52,12 @@ public class KZNInstaScanView:InstaScanView{
         onPincodeRead?(event)
     }
     
+    @objc public var torchStatus:Bool{
+        get{
+            return getTorchStatus()
+        }
+    }
+    
     //MARK: Root Configuration
     @objc public var apiKey:String = ""{
         didSet{

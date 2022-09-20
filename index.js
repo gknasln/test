@@ -65,13 +65,13 @@ export default class InstaScan extends Component {
 
     }, 1000);
 
-    /*setTimeout(() => {
+    setTimeout(() => {
 
-      this.getTorchStatus(torchStatus => {
-        alert(`torchStatus: ${torchStatus}`);
-      })
+     
+      alert("Torch Status: " + this.instaScanRef.torchStatus)
 
-    }, 2000);*/
+
+    }, 2000);
 
     setTimeout(() => {
       this.toggleTorch()
@@ -92,6 +92,7 @@ export default class InstaScan extends Component {
         ref={ref => this.instaScanRef = ref}
         style = {{flex:1}}
         apiKey = "abcdefgh"
+        
         //{...this.props}
         onPincodeRead={event => {
           if(this.props.onPincodeRead)

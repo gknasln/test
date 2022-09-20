@@ -19,6 +19,8 @@
     RCT_EXTERN_METHOD(getTorchStatus:(nonnull NSNumber *)node :(RCTResponseSenderBlock)callback)
     RCT_EXTERN_METHOD(updateGuideText:(nonnull NSNumber *)node :(NSString)text)
 
+    RCT_EXPORT_VIEW_PROPERTY(torchStatus, BOOL)
+
     RCT_EXPORT_VIEW_PROPERTY(apiKey, NSString)
     RCT_EXPORT_VIEW_PROPERTY(guideText, NSString)
 
