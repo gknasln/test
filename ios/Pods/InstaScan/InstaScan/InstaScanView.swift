@@ -112,7 +112,7 @@ open class InstaScanView: UIView {
     
     func replaceTransform(_ candidate:String) -> String{
         var result = candidate
-        for (replaceKey,replaceValue) in rules.replaceMap {
+        for (replaceKey,replaceValue) in rules.replaceMap {
             result = candidate.replacingOccurrences(of: replaceKey, with: replaceValue)
         }
         return result
@@ -239,8 +239,17 @@ open class InstaScanView: UIView {
         onPincodeReaded(result)
     }
 
+    func onError(_ error:Error){
+        delegate?.onError(error: error)
+    }
+    
     func onPincodeReaded(_ result:InstaScanResult){
         delegate?.pincodeReaded(result: result)
+        recordScan {[weak self] success, error, response in
+           if let err = error{
+               self?.onError(err)
+            }
+        }
     }
     
     open func restartScan(){
@@ -260,28 +269,195 @@ open class InstaScanView: UIView {
         overlayView.guideText = guideText
     }
     
-    func validateApiKey() -> Bool{
+    func invokeApi(_ relativePath:String, _ resultHandler:@escaping ((_ success: Bool, _ error:Error?, _ responseData:[String:Any]?) -> Void)){
+        
+        func convertStringToDictionary(text: String) -> [String:Any]? {
+           if let data = text.data(using: .utf8) {
+               do {
+                   let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
+                   return json
+               } catch {
+                  
+               }
+           }
+           return nil
+       }
+        
         let deviceInfo = InstaScanDeviceInfo()
-        _ = deviceInfo.bundleId
-        _ = deviceInfo.appName
-        _ = deviceInfo.appVersion
-        return configuration.apiKey == "abcdefgh"
+        let packageId = deviceInfo.bundleId
+        let appName = deviceInfo.appName
+        let appVersion = deviceInfo.appVersion
+        let os = deviceInfo.systemName
+        let osVersion = deviceInfo.systemVersion
+        let uuid = deviceInfo.uuid
+        let deviceModel = deviceInfo.deviceModel
+        let brandName = deviceInfo.brandName
+        
+        let apiKey = configuration.apiKey ?? ""
+        let url = URL(string: "https://test-instascan.peraplatform.com/api/" + relativePath)!
+        var request = URLRequest(url: url)
+        request.setValue(
+            apiKey,
+            forHTTPHeaderField: "X-kt-apikey"
+        )
+        
+        request.setValue(
+            "application/json;charset=utf-8",
+            forHTTPHeaderField: "Content-Type"
+        )
+        
+        let body = ["os": os, "osVersion":osVersion, "instaScanUUID" : uuid, "appVersion":appVersion, "appDeviceBrand":brandName, "appDeviceModel":deviceModel, "packageId":packageId, "appName":appName]
+        let bodyData = try? JSONSerialization.data(
+            withJSONObject: body,
+            options: []
+        )
+        
+        request.httpMethod = "POST"
+        request.httpBody = bodyData
+        
+        
+        let sessionConfiguration = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfiguration)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error as? NSError{
+                DispatchQueue.main.async {
+                    resultHandler(false,error,nil)
+                }
+            } else if let data = data {
+                if let httpResponse = response as? HTTPURLResponse {
+                    let statusCode = httpResponse.statusCode
+                    let responseString = String(data: data, encoding: .utf8) ?? ""
+                
+                    let errorDescription =  "Unauthorized API key. Please verify your API key is valid."
+                   
+                    if statusCode == 401 {
+                        let error = NSError(domain: "com.kaizen.InstaScan", code: 401,userInfo: [NSLocalizedDescriptionKey:errorDescription ,NSLocalizedFailureReasonErrorKey:errorDescription,NSLocalizedRecoverySuggestionErrorKey:errorDescription])
+                        DispatchQueue.main.async {
+                            resultHandler(false,error,nil)
+                        }
+                    } else if statusCode == 200 {
+                        DispatchQueue.main.async {
+                            resultHandler(true,nil,convertStringToDictionary(text: responseString))
+                        }
+                    }
+                }
+              
+            }
+        }
+        
+        task.resume()
+        
+    }
+    
+    func recordScan( _ resultHandler:@escaping ((_ success: Bool, _ error:Error?, _ data:[String:Any]?) -> Void)){
+        invokeApi("Scan", resultHandler)
+        
+    }
+    
+    func validateApiKey( _ resultHandler:@escaping ((_ success: Bool, _ error:Error?, _ data:[String:Any]?) -> Void)){
+        invokeApi("Initialize", resultHandler)
+    }
+    
+    func fillConfiguration(_ response:[String:Any]){
+        if let resolution = response["cameraResolution"] as? String{
+            switch resolution {
+            case "hdw1280h720":
+                settings.resolution = .hdw1280h720
+            case "hd4Kw3840h2160":
+                settings.resolution = .hd4Kw3840h2160
+            case "hdw1920h1080":
+                settings.resolution = .hdw1920h1080
+            case "vgaw640h480":
+                settings.resolution = .vgaw640h480
+            default:
+                settings.resolution = .hdw1280h720
+            }
+        }
+        
+        if let sampleCount = response["sampleCount"] as? Int{
+            settings.sampleCount = sampleCount
+        }
+      
+        if let guideAreaAspectRatio = response["guideAreaAspectRatio"] as? Double{
+            settings.guideAreaAspectRatio = guideAreaAspectRatio
+        }
+        
+        if let guideAreaWidthRatio = response["guideAreaWidthRatio"] as? Double{
+            settings.guideAreaWidthRatio = guideAreaWidthRatio
+        }
+        
+        if let minTextHeight = response["minTextHeight"] as? Double{
+            settings.minTextHeight = minTextHeight
+        }
+        
+        if let zoomLevel = response["zoomLevel"] as? Double{
+            settings.zoomFactor = zoomLevel
+        }
+        
+        if let allowedChars = response["allowedChars"] as? String{
+            rules.allowedChars = allowedChars
+        }
+        
+        if let minDigits = response["minDigits"] as? Int{
+            rules.minDigits = minDigits
+        }
+        
+        if let maxDigits = response["maxDigits"] as? Int{
+            rules.maxDigits = maxDigits
+        }
+        
+        if let replaceMap = response["replaceMap"] as? [String:String]{
+            rules.replaceMap = replaceMap
+        }
+        
+        if let validTextHighlightColor = response["validTextHighlightColor"] as? String{
+            style.validTextHighlightColor = UIColor(hexString: validTextHighlightColor)
+        }
+        
+        if let invalidTextHighlightColor = response["invalidTextHighlightColor"] as? String{
+            style.invalidTextHighlightColor = UIColor(hexString: invalidTextHighlightColor)
+        }
+        
+        if let guideTextColor = response["guideTextColor"] as? String{
+            style.guideTextColor = UIColor(hexString: guideTextColor)
+        }
+        
+        if let overlayColor = response["overlayColor"] as? String{
+            style.overlayColor = UIColor(hexString: overlayColor)
+        }
+        
+        if let guideTextFontName = response["guideTextFontName"] as? String, let guideTextFontSize = response["guideTextFontSize"] as? Double{
+            if let font = UIFont(name: guideTextFontName, size: guideTextFontSize){
+                style.guideTextFont = font
+            }
+        }
+        
+        if let guideText = response["guideText"] as? String{
+            configuration.guideText = guideText
+        }
+        
     }
     
     open func startScan(configuration:InstaScanConfiguration){
         self.configuration = configuration
         overlayView.lblGuide.isHidden = false
-        overlayView.guideText = configuration.guideText
+        overlayView.guideText = ""
         overlayView.guideTextFont = configuration.style.guideTextFont
         overlayView.guideTextColor = configuration.style.guideTextColor
         overlayView.overlayColor  = configuration.style.overlayColor
-        if validateApiKey() {
-            setupCaptureSession()
-
-        } else {
-            updateGuideText("INVALID API KEY")
+        
+        validateApiKey {[weak self] success, error, response in
+            if success{
+                if let resp = response{
+                    self?.fillConfiguration(resp)
+                }
+                self?.overlayView.guideText = self?.configuration.guideText
+                self?.setupCaptureSession()
+            } else if let err = error{
+                self?.onError(err)
+                self?.updateGuideText(err.localizedDescription)
+            }
         }
-
     }
 
     func setupCutoutTransform(){

@@ -6,8 +6,9 @@ export default function Camera() {
   
   return (
     <View style={styles.container}>
-      <InstaScan apiKey="abcdefgh"
+      <InstaScan apiKey="fBjYzfbJTHx+5VIcEQLsEBCnNoAZksLw6TtHTUV/LOI="
         onPincodeRead = {data => console.log("pincode read: " + JSON.stringify(data))}
+        onInstaScanError = {data => console.log("sdk error: " + JSON.stringify(data))}
       /> 
     </View>
   )

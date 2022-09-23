@@ -9,4 +9,6 @@ import Foundation
 
 public protocol InstaScanDelegate{
     func pincodeReaded(result:InstaScanResult)
+    func onError(error:Error)
+
 }

@@ -107,6 +107,7 @@ extension UIDevice {
 }
 
 class InstaScanDeviceInfo {
+    let brandName = "Apple"
     let systemName = UIDevice.current.systemName
     let systemVersion = UIDevice.current.systemVersion
     let deviceModel = UIDevice.modelName
@@ -119,6 +120,22 @@ class InstaScanDeviceInfo {
             return "\(currentVersion) (\(appBuild))"
         }
         return "Unknown"
+    }
+    var uuid:String{
+        
+        let account = "com.kaizen.InstaScan"
+        let service = "uuid"
+        
+        var result = ""
+        
+        if let uniqueId = InstaScanKeychainHelper.standard.read(service: service, account: account, type: String.self) {
+            result = uniqueId
+        } else {
+            let uniqueId = UUID().uuidString
+            InstaScanKeychainHelper.standard.save(uniqueId, service: service, account: account)
+            result = uniqueId
+        }
+        return result
     }
     
 

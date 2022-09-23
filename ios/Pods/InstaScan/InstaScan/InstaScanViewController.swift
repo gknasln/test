@@ -56,4 +56,8 @@ open class InstaScanViewController: UIViewController, InstaScanDelegate {
         
     }
     
+    open func onError(error: Error) {
+        
+    }
+    
 }

@@ -68,7 +68,7 @@ export default class InstaScan extends Component {
     setTimeout(() => {
 
      
-      alert("Torch Status: " + this.instaScanRef.torchStatus)
+      //alert("Torch Status: " + this.instaScanRef.torchStatus)
 
 
     }, 2000);
@@ -91,13 +91,17 @@ export default class InstaScan extends Component {
       <RNInstaScan
         ref={ref => this.instaScanRef = ref}
         style = {{flex:1}}
-        apiKey = "abcdefgh"
+        apiKey = "fBjYzfbJTHx+5VIcEQLsEBCnNoAZksLw6TtHTUV/LOI="
         
         //{...this.props}
         onPincodeRead={event => {
           if(this.props.onPincodeRead)
             this.updateGuideText(event.nativeEvent.pincode)
             this.props.onPincodeRead(event.nativeEvent);
+        }}
+        onInstaScanError={event => {
+          if(this.props.onInstaScanError)
+            this.props.onInstaScanError(event.nativeEvent);
         }}
       />
     );
