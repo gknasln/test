@@ -74,6 +74,20 @@ public class InstaScanViewManager : RCTViewManager {
         }
       }
   
+    @objc func getTorchStatus(_ node: NSNumber, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+       
+       DispatchQueue.main.async {
+           let component =  self.bridge.uiManager.view(
+           forReactTag: node
+         ) as! KZNInstaScanView
+           
+           let status = component.getTorchStatus()
+          
+           resolve(status)
+           
+       }
+     }
+    
     
     public override func view() -> UIView! {
         return KZNInstaScanView()

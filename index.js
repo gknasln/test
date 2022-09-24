@@ -17,9 +17,9 @@ const myPropTypes = {
 
 
 
-const COMPONENT_NAME = "InstaScanView";
+const COMPONENT_NAME = "KZNInstaScanView";
 const RNInstaScan = requireNativeComponent(COMPONENT_NAME);
-
+const CameraModule = NativeModules.KZNInstaScanView
 export default class InstaScan extends Component {
   constructor(props){
     super(props);
@@ -49,7 +49,6 @@ export default class InstaScan extends Component {
 
   
   componentDidMount(){
-    console.log(this.instaScanRef)
     setTimeout(() => {
       this.startScan();
 
@@ -65,11 +64,16 @@ export default class InstaScan extends Component {
 
     }, 1000);
 
-    setTimeout(() => {
+    setTimeout(async () => {
 
-     
-      //alert("Torch Status: " + this.instaScanRef.torchStatus)
-
+      //console.log(CameraModule)
+      try{
+        let torchStatus = await CameraModule.getTorchStatus(findNodeHandle(this.instaScanRef))
+        console.log("torchStatus",torchStatus)
+      }
+      catch(error){
+        console.log(error)
+      }
 
     }, 2000);
 
@@ -77,6 +81,19 @@ export default class InstaScan extends Component {
       this.toggleTorch()
 
     }, 5000);
+
+    setTimeout(async () => {
+
+      //console.log(CameraModule)
+      try{
+        let torchStatus = await CameraModule.getTorchStatus(findNodeHandle(this.instaScanRef))
+        console.log("torchStatus",torchStatus)
+      }
+      catch(error){
+        console.log(error)
+      }
+
+    }, 6000);
 
   }
 
@@ -100,8 +117,8 @@ export default class InstaScan extends Component {
             this.props.onPincodeRead(event.nativeEvent);
         }}
         onInstaScanError={event => {
-          if(this.props.onInstaScanError)
-            this.props.onInstaScanError(event.nativeEvent);
+          if(this.props.onError)
+            this.props.onError(event.nativeEvent);
         }}
       />
     );

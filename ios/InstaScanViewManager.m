@@ -9,15 +9,16 @@
 #import <React/RCTViewManager.h>
 
 
-@interface RCT_EXTERN_MODULE(InstaScanViewManager, RCTViewManager)
+@interface RCT_EXTERN_REMAP_MODULE(KZNInstaScanView, InstaScanViewManager, RCTViewManager)
 
     RCT_EXTERN_METHOD(startScan:(nonnull NSNumber *)node)
     RCT_EXTERN_METHOD(stopScan:(nonnull NSNumber *)node)
     RCT_EXTERN_METHOD(restartScan:(nonnull NSNumber *)node)
     RCT_EXTERN_METHOD(toggleTorch:(nonnull NSNumber *)node)
     RCT_EXTERN_METHOD(setTorch:(nonnull NSNumber *)node :(BOOL)status)
-    RCT_EXTERN_METHOD(getTorchStatus:(nonnull NSNumber *)node :(RCTResponseSenderBlock)callback)
     RCT_EXTERN_METHOD(updateGuideText:(nonnull NSNumber *)node :(NSString)text)
+
+    RCT_EXTERN_METHOD(getTorchStatus:(nonnull NSNumber *)node resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
 
     RCT_EXPORT_VIEW_PROPERTY(torchStatus, BOOL)
 
